@@ -30,5 +30,7 @@ public class RegisterRequest {
 	public void setConfirmPassword(String confirmPassword) {
 		this.confirmPassword = confirmPassword;
 	}
-
+	public boolean isPasswordEqualConfirmPassword() {
+	      return password.equals(confirmPassword);
+	}
 }
