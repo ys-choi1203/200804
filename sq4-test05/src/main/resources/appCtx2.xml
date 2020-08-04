@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlxmlns="http://www/springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="
+	   	http://www/springframework.org/schema/beans
+	   	http://www/springframework.org/schema/beans/spring-beans.xsd
+	   	">
+	
+	<bean id="memberRegisterService" class="Main.service.MemberRegisterService">
+	<!-- this => name 이다 -->
+		<constructor-arg name="memberDao" ref="memberDao" />
+	</bean>
+	<bean id="memberListPrinter" class="Main.service.MemberListPrinter">
+		<constructor-arg name="memberDao" ref="memberDao" />
+		<constructor-arg name="printer" ref="printer" />
+	</bean>
+	<bean id="changePasswordService" class="Main.service.ChangePasswordService">
+		<property name="memberDao" ref="memberDao"/>
+	</bean>
+	<!-- 
+		ChangePasswordService changePasswordService = new ChangePasswordService();
+		changePasswordService.MemberDao(memberDao)
+	-->
+	<bean id="memberInfoPrinter" class="Main.service.MemberInfoPrinter">
+		<property name="memberDao" ref="memberDao"/>
+		<!-- setMemberDao(memberDao) -->
+		<property name="printer" ref="printer"/>
+		<!-- setPrinter(printer) -->
+	</bean>
+	<!-- 생성자 : <constructor-arg>, set : <property> 로 의존 객체 주입 받을 때-->
+</beans>

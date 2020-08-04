@@ -1,15 +1,23 @@
-package Main;
+package sq4.sq4_test05;
 
 import java.util.Scanner;
 
+import org.springframework.context.support.GenericXmlApplicationContext;
+
+import Main.DTO.CachedMemberDao;
+import Main.DTO.MemberDao;
 import Main.DTO.RegisterRequest;
 import Main.service.ChangePasswordService;
 import Main.service.MemberInfoPrinter;
 import Main.service.MemberListPrinter;
+import Main.service.MemberPrinter;
 import Main.service.MemberRegisterService;
 
 public class App {
+	private static GenericXmlApplicationContext ctx;
+	
 	public static void main(String[] args) {
+		ctx = new GenericXmlApplicationContext("classpath:appCtx.xml");
 		Scanner sc = new Scanner(System.in);
 		while(true) {
 			System.out.println("명령어를 입력하세요:");
@@ -35,8 +43,8 @@ public class App {
 					continue;
 				}
 				// dependency object
-				MemberRegisterService mrs = 
-						new MemberRegisterService();
+				// 생성자로 의존객체 주입
+				MemberRegisterService mrs = ctx.getBean("memberRegisterService", MemberRegisterService.class);
 				mrs.regist(req);
 			}else if(command.startsWith("change ")) {
 				String [] arg = command.split(" ");
@@ -44,13 +52,16 @@ public class App {
 					printHelp();
 					continue;
 				}
-				ChangePasswordService changePwdSvc = new ChangePasswordService();
+				
+				// dependency object
+				// 생성자로 의존객체 주입
+				ChangePasswordService changePwdSvc = ctx.getBean("changePasswordService", ChangePasswordService.class);
 				changePwdSvc.changePassword(arg[1],arg[2],arg[3]);
 				
 			}else if(command.equals("list")) {
 				// dependency object
-				MemberListPrinter listPrint = 
-						new MemberListPrinter();
+				// 생성자로 의존객체 주입
+				MemberListPrinter listPrint = ctx.getBean("memberListPrinter", MemberListPrinter.class);
 				listPrint.printAll();
 			}else if(command.startsWith("info ")) {
 				String [] arg = command.split(" ");
@@ -58,9 +69,10 @@ public class App {
 					printHelp();
 					continue;
 				}
-				MemberInfoPrinter infoPrinter = 
-						new MemberInfoPrinter();
+				// set으로 받은거 의존객체 주입
+				MemberInfoPrinter infoPrinter = ctx.getBean("memberInfoPrinter", MemberInfoPrinter.class);				
 				infoPrinter.printMemberInfo(arg[1]);
+				
 			}else if(command.equals("exit")) {
 				System.out.println("프로그램이 종료되었습니다.");
 				System.exit(0);
@@ -78,3 +90,4 @@ public class App {
 	      System.out.println("info  이메일");
 	 }
 }
+

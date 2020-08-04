@@ -2,10 +2,12 @@ package Main.service;
 
 import Main.DTO.MemberDTO;
 
+import Main.DTO.MemberDTO;
+
 public class MemberPrinter {
 	public void print(MemberDTO dto) {
 		System.out.printf(
-				"È¸¿øÁ¤º¸´Â : ¾ÆÀÌµğ = %d, ÀÌ¸ŞÀÏ = %s, ÀÌ¸§ = %s, µî·ÏÀÏ = %tF \n",
+				"íšŒì›ì •ë³´ëŠ” : ì•„ì´ë”” = %d, ì´ë©”ì¼ = %s, ì´ë¦„ = %s, ë“±ë¡ì¼ = %tF \n",
 				dto.getId(), dto.getEmail(), dto.getName(), dto.getRegisterDate());
 	}
 }

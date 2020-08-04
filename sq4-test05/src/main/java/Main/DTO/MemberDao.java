@@ -6,8 +6,7 @@ import java.util.Map;
 
 public class MemberDao {
 	private static long nextId = 0;
-	private static Map<String, MemberDTO> map =
-			new HashMap<String, MemberDTO>();
+	private static Map<String, MemberDTO> map = new HashMap<String, MemberDTO>();
 	public Collection<MemberDTO> selectAll(){
 		return map.values();
 	}

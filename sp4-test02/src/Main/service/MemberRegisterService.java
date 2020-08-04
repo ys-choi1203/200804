@@ -7,7 +7,9 @@ import Main.DTO.MemberDao;
 import Main.DTO.RegisterRequest;
 
 public class MemberRegisterService {
-	// ì˜ì¡´ ê°ì²´
+	// ÀÇÁ¸°´Ã¼
+	// dto´Â ÁÖ·Î ÀÇÁ¸°´Ã¼¸¦ »ç¿ëÇÏÁö¾Ê´Â´Ù
+	// µû¶ó¼­ dao·Î ºÎÅÍ dto¸¦ ¹Ş¾Æ¿Â´Ù
 	private MemberDao memberDao = new MemberDao();
 	public void regist(RegisterRequest req) {
 		MemberDTO dto = memberDao.selectByEmail(req.getEmail());
@@ -18,9 +20,9 @@ public class MemberRegisterService {
 			dto.setPassword(req.getPassword());
 			dto.setRegisterDate(new Date());
 			memberDao.insert(dto);
-			System.out.println("ì‚¬ìš©ì ë“±ë¡ì´ ì™„ë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤.");
+			System.out.println("»ç¿ëÀÚ µî·ÏÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
 		}else {
-			System.out.println("ì¤‘ë³µ ì‚¬ìš©ìì…ë‹ˆë‹¤.");
+			System.out.println("Áßº¹ »ç¿ëÀÚÀÔ´Ï´Ù.");
 		}		
 	}
 }

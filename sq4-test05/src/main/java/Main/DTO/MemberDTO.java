@@ -13,7 +13,7 @@ public class MemberDTO {
 		if(password.equals(oldPwd)) {
 			password = newPwd;
 		}else {
-			System.out.println("ÇöÀçºñ¹Ð¹øÈ£°¡ Æ²¸³´Ï´Ù.");
+			System.out.println("í˜„ìž¬ë¹„ë°€ë²ˆí˜¸ê°€ í‹€ë¦½ë‹ˆë‹¤.");
 		}
 	}
 	public Long getId() {
