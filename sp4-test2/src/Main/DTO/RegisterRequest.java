@@ -30,5 +30,5 @@ public class RegisterRequest {
 	public void setConfirmPassword(String confirmPassword) {
 		this.confirmPassword = confirmPassword;
 	}
-	public boolean isPassword
+
 }
